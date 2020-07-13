@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/kayit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+</head>
+
+<body>
+    <div class="login-out">
+        <div class="login-in">
+           <h4>KAYIT OL</h4>
+           <form action="/users/register" method="post" enctype="multipart/form-data">
+                <div class="username login-style">
+                    <i class="fas fa-user-alt"></i>
+                    <input type="text" id="username" name="name" placeholder="İsminiz">
+                </div>
+
+            <div class="password login-style">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password0" name="password" placeholder="Parolanız">
+            </div>
+            <div class="login-style">
+                <i class="fas fa-envelope-square"></i>
+                <input type="text" id="telnumber" name="email" placeholder="Mail Adresiniz">
+            </div>
+            <div class="telnumber login-style">
+                <i class="fas fa-mobile"></i>
+                <input type="text" id="telnumber" name="phone" placeholder="Telefonunuz">
+            </div>
+            <div class="login-style">
+                <i class="fas fa-address-book"></i>
+                <input type="text" id="telnumber" name="address" placeholder="Adresiniz">
+            </div>
+            <div class="login-style">
+                <i class="fas fa-images"></i>
+                <input type="file" name="imageFile">
+            </div>
+            
+            <input type="submit" id="log" name="" value="Kayıt Ol">
+        </form>
+
+        {{#if message}}
+        <p style="border-style: dashed; border-color: hotpink;">
+            {{message}}
+        </p>
+        {{/if}}
+</div>
+    </div>
+
+</body></html>

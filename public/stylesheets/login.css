@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+html{
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+.login-out{
+    height: 100vh;
+    width: 40%;
+    margin: 0 auto;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.login-in{
+    height: 60vh;
+    width: 60%;
+    background: #F4CAE0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    -webkit-box-shadow: 10px 10px 25px -4px #ADA7C9;
+    -moz-box-shadow: 10px 10px 25px -4px #ADA7C9;
+    box-shadow: 10px 10px 25px -4px #ADA7C9;
+}
+.login{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.login h4{
+    font-size: 3vh;
+    color: #ADA7C9;
+}
+#login-form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+}
+.btn-style{
+    height: 5vh;
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vh;
+}
+.login-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1vh;
+}
+.login-style input{
+    height: 4vh;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid #ADA7C9;
+    color: #2B5564;
+    font-family: 'Poppins', sans-serif;
+    
+}
+.login-style i{
+    color: #2B5564;
+}
+#log{
+    height: 5vh;
+    width: 70%;
+    border-radius: 20px;
+    margin: 1vh;
+    border: 1px solid #ADA7C9;
+    background: #ADA7C9;
+}
+.google img{
+    height: 4vh;
+}
+.github img{
+    height: 4vh;
+}
+
+.google{
+    cursor: pointer;
+    background: #de5246;
+    border-radius: 20px;
+}
+.github{
+    cursor: pointer;
+    background: green;
+    border-radius: 20px;
+}
+
+@media only screen and (max-width: 1480px) {
+    .login-out{
+        width: 70%;
+    }
+    .login-in{
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 780px) {
+    .login-out{
+        width: 100%;
+    }
+    .login-in{
+        width: 100%;
+    }
+}
+

@@ -1,0 +1,191 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+html {
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.odeme {
+    height: 100vh;
+    width: 100%;
+    background: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.odeme-in {
+    height: 70vh;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: pink;
+    border-radius: 20px;
+    -webkit-box-shadow: 9px 7px 64px 58px rgba(244, 202, 224, 1);
+    -moz-box-shadow: 9px 7px 64px 58px rgba(244, 202, 224, 1);
+    box-shadow: 9px 7px 64px 58px rgba(244, 202, 224, 1);
+
+}
+
+.card-out {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.card-in {
+    height: 30vh;
+    width: 95%;
+    background: #F4CAE0;
+    border: 3px solid #F1BBD7;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.book-about {
+    position: relative;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.book-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110%;
+    flex: 1;
+}
+
+.book-image img {
+    height: 110%;
+    border-radius: 25px;
+}
+
+.thin {
+    display: flex;
+    justify-content: flex-start
+}
+
+.p-c1 {
+    font-weight: 600;
+    color: #2B5564;
+}
+
+.p-c2 {
+    font-weight: 600;
+    color: #771849;
+}
+
+.btn-rent {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 40px;
+    width: 70px;
+    text-align: center;
+    line-height: 40px;
+    background: #ADA7C9;
+    border-radius: 20px;
+    color: #43859D;
+    cursor: pointer;
+
+}
+
+.kredi-bil {
+    height: 10vh;
+    width: 100%;
+    background: yellow;
+    margin-top: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #F4CAE0;
+}
+
+.kredi-bil h2 {
+    color: #2B5564;
+}
+
+.kredi-show {
+
+    font-size: 3rem;
+    color: #43859D;
+
+}
+
+#log {
+    height: 10vh;
+    width: 70%;
+    border-radius: 20px;
+    margin: 1vh;
+    border: 2px solid #771849;
+    background: #ADA7C9;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    color: #771849;
+    font-weight: 600;
+}
+
+@media only screen and (max-width: 1480px) {
+    .card-out {
+        width: 100%;
+    }
+
+    .odeme-in {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+    html {
+        font-size: 15px;
+    }
+
+    .card-out {
+        width: 100%;
+    }
+
+    .odeme-in {
+        width: 90%;
+    }
+    .kredi-show{
+        font-size: 2rem;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    html {
+        font-size: 10px;
+    }
+
+    .card-out {
+        width: 100%;
+    }
+
+    .odeme-in {
+        width: 100%;
+    }
+    .kredi-show{
+        font-size: 1rem;
+    }
+}
+

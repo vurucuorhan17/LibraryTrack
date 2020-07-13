@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/booksStyle.css">
+</head>
+
+<body>
+    <div class="container-header">
+       <div class="container-high">
+          <div class="header-logo">
+              <img src="/images/headerlogo.png" alt="">
+              <h4>LIBRARY TRACK</h4>
+          </div>
+           <div class="navbar">
+               <div onclick="window.location = '/books'">Kitaplar</div>
+               {{#if user}}
+               {{#if socialProfile}}
+                <div onclick="window.location = '/users/logoutSocialAccount'">Çıkış</div>
+               {{/if}}
+               {{#unless socialProfile}}
+                <div onclick="window.location = '/users/logout'">Çıkış</div>
+               {{/unless}}
+               {{/if}}
+               {{#unless user}}
+               <div onclick="window.location = '/users/login'">Giriş</div>
+               {{/unless}}
+               {{#if user}}
+               {{#if socialProfile}}
+               <div onclick="window.location = '/users/socialProfile'">Profil</div>
+               {{/if}}
+               {{#unless socialProfile}}
+               <div onclick="window.location = '/users/profile'">Profil</div>
+               {{/unless}}
+               {{/if}}
+           </div>
+       </div>
+   </div>
+
+    <div class="navigation-container">
+        <div class="nav1">
+            <button type="button" class="new-book nav1-btn" onclick="window.location.href = '/books/lastAdded'">Yeni Eklenen</button>
+            <button type="button" class="star-book nav1-btn" onclick="window.location.href = '/books/top10'">En Çok Puan Alan</button>
+            <button type="button" class="category-book nav1-btn" onclick="window.location.href = '/books/mostRent'">En Çok Kiralanan</button>
+        </div>
+        <form class="nav2" action="/books/search" method="GET" enctype="application/x-www-form-urlencoded">
+            <label for="bookname">Kitap Adı :</label>
+            <input type="text" id="bookname" name="bookname"   class="input-style">
+            <label for="authorname">Yazar :</label>
+            <input type="text" id="authorname" name="authorname"   class="input-style">
+            <label for="category">Kategori :</label>
+            <input type="text" id="category" name="category"  class="input-style">
+            <input type="submit" value="Ara" class="nav2-btn">
+        </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <!-- Cards-Template  -->
+    <div class="all-cards">
+        {{#each books}}
+        <div class="card-out">
+           <div class="card-in">
+               <div class="book-image"><img src="{{book_picture}}" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">{{name}}</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">{{author.name}}</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">{{category}}</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">{{barkod}}</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">{{stok}}</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">{{puan}}</p></div>
+                   <div class="star thin"><p class="p-c1">Fiyat : </p><p class="p-c2">{{price}}</p></div>
+                   <div class="btn-rent" onclick="window.location.href = '/payment/{{_id}}'">Kirala</div>
+                
+               </div>
+           </div> 
+        </div>
+        {{/each}}
+
+        {{#each bookByAuthor}}
+        <div class="card-out">
+           <div class="card-in">
+               <div class="book-image"><img src="{{book_picture}}" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">{{name}}</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">{{author.name}}</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">{{category}}</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">{{barkod}}</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">{{stok}}</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">{{puan}}</p></div>
+                   <div class="star thin"><p class="p-c1">Fiyat : </p><p class="p-c2">{{price}}</p></div>
+                   <div class="btn-rent" onclick="window.location.href = '/payment/{{_id}}'">Kirala</div>
+                
+               </div>
+           </div> 
+        </div>
+        {{/each}}
+
+        {{#each bookByCategory}}
+        <div class="card-out">
+           <div class="card-in">
+               <div class="book-image"><img src="{{book_picture}}" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">{{name}}</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">{{author.name}}</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">{{category}}</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">{{barkod}}</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">{{stok}}</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">{{puan}}</p></div>
+                   <div class="star thin"><p class="p-c1">Fiyat : </p><p class="p-c2">{{price}}</p></div>
+                   <div class="btn-rent" onclick="window.location.href = '/payment/{{_id}}'">Kirala</div>
+                
+               </div>
+           </div> 
+        </div>
+        {{/each}}
+
+        {{!-- <div class="card-out">
+           <div class="card-in">
+               <div class="book-image"><img src="book image/lotr.jpg" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">LOTR-Yüzük Kardeşliği</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">Tolkien</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">Fantastik</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">Barkot</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">5</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">10</p></div>
+                   <div class="btn-rent">Kirala</div>
+               </div>
+           </div> 
+        </div>
+        <div class="card-out">
+            <div class="card-in">
+                <div class="book-image"><img src="book image/lotr.jpg" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">LOTR-Yüzük Kardeşliği</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">Tolkien</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">Fantastik</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">Barkot</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">5</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">10</p></div>
+                   <div class="btn-rent">Kirala</div>
+               </div>
+            </div>
+        </div>
+        <div class="card-out">
+            <div class="card-in">
+                <div class="book-image"><img src="book image/lotr.jpg" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">LOTR-Yüzük Kardeşliği</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">Tolkien</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">Fantastik</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">Barkot</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">5</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">10</p></div>
+                   <div class="btn-rent">Kirala</div>
+               </div>
+            </div>
+        </div>
+        <div class="card-out">
+            <div class="card-in">
+                <div class="book-image"><img src="book image/lotr.jpg" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">LOTR-Yüzük Kardeşliği</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">Tolkien</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">Fantastik</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">Barkot</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">5</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">10</p></div>
+                   <div class="btn-rent">Kirala</div>
+               </div>
+            </div>
+        </div>
+        <div class="card-out">
+            <div class="card-in">
+                <div class="book-image"><img src="book image/lotr.jpg" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">LOTR-Yüzük Kardeşliği</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">Tolkien</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">Fantastik</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">Barkot</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">5</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">10</p></div>
+                   <div class="btn-rent">Kirala</div>
+               </div>
+            </div>
+        </div>
+    </div> --}}
+    
+</body></html>

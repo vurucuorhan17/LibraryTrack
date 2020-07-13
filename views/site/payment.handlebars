@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/paymentstyle.css">
+</head>
+<body>
+   <div class="odeme">
+       <div class="odeme-in">
+          <div class="card-out">
+           <div class="card-in">
+               <div class="book-image"><img src="{{book.book_picture}}" alt=""></div>
+               <div class="book-about">
+                   <div class="book-name thin"><p class="p-c1">Kitap : </p><p class="p-c2">{{book.name}}</p></div>
+                   <div class="author-name thin"><p class="p-c1">Yazar : </p><p class="p-c2">{{author}}</p></div>
+                   <div class="category thin"><p class="p-c1">Kategori : </p><p class="p-c2">{{book.category}}</p></div>
+                   <div class="barcode thin"><p class="p-c1">Barkod : </p><p class="p-c2">{{book.barkod}}</p></div>
+                   <div class="stock thin"><p class="p-c1">Stok : </p><p class="p-c2">{{book.stok}}</p></div>
+                   <div class="star thin"><p class="p-c1">Puan : </p><p class="p-c2">{{book.puan}}</p></div>
+                   <div class="star thin"><p class="p-c1">Fiyat : </p><p class="p-c2">{{book.price}}TL</p></div>
+               </div>
+           </div> 
+        </div>
+          <div class="kredi-bil">
+              <div class="kredi-show">{{user.name}}</div>
+          </div>
+          <div class="kredi-bil">
+              <h2>Krediniz :&nbsp;&nbsp;</h2>
+              <div class="kredi-show">{{user.credit}}</div>
+          </div>
+          <input type="button" id="log" name="fname" value="Kirala" onclick="window.location.href = '/payment/odemeonaylama/{{book._id}}'">
+           
+       </div>
+   </div>
+    
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+    <link rel="stylesheet" href="/stylesheets/adminstyle.css">
+
+</head>
+
+<body>
+
+
+
+
+    <form class="profile-form form-2" action="/admin/users/delete?_method=DELETE" method="POST">
+        <div class="form-header">
+            <h3 class="form-header-title">Kullanıcı Silme</h3>
+        </div>
+        <div class="form-container form-2-container">
+            <div class="section-form">
+                <div class="logo1 logo"><i class="fas fa-key fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kullanıcı ID " name="userID">
+            </div>
+            <div class="section-form">
+                <input class="btn-style input-style" type="submit" value="SİL">
+            </div>
+        </div>
+    </form>
+
+
+    <form class="profile-form" action="/admin/users/update?_method=PUT" method="POST">
+        <div class="form-header">
+            <h3 class="form-header-title">Kullanıcı Güncelleme</h3>
+        </div>
+        <div class="form-container">
+            <div class="section-form">
+                <div class="logo1 logo"><i class="fas fa-key fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kullanıcı ID " name="userID">
+            </div>
+            <div class="section-form">
+                <div class="logo2 logo"><i class="fas fa-mobile-alt fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Telefon Numarası" name="phone">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fas fa-envelope-square fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Mail" name="email">
+            </div>
+            <div class="section-form">
+                <div class="logo4 logo"><i class="fas fa-lock fa-2x"></i></div>
+                <input class="name-chance input-style" type="password" placeholder="Şifre" name="password">
+            </div>
+            <div class="section-form">
+                <input class="txt-area input-style" type="text-area" placeholder="Adres giriniz" name="address">
+            </div>
+            <div class="section-form">
+                <input class="btn-style input-style" type="submit" value="GÜNCELLE">
+            </div>
+        </div>
+    </form>
+
+
+    <form class="profile-form" action="/admin/books/new" method="POST" enctype="multipart/form-data">
+        <div class="form-header">
+            <h3 class="form-header-title">Kitap Ekleme</h3>
+        </div>
+        <div class="form-container">
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kitap İsmi " name="name">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Yazar Adı" name="author">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kategori" name="category">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Barkod" name="barkod">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Stok" name="stok">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Fiyat" name="price">
+            </div>
+            <div class="section-form">
+                <div class="logo4 logo"><i class="fas fa-star-half-alt fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Puan" name="puan"> 
+            </div>
+            <div class="section-form">
+                <input id="file" class="fileStyle input-style" type="file" name="myfile" placeholder="Kitap Resmi Yükle">
+            </div>
+            <div class="section-form">
+                <input id="file" class="fileStyle input-style" type="file" name="bookFile" placeholder="Kitap Dosyasını Yükle">
+            </div>
+            <div class="section-form">
+                <input class="btn-style input-style" type="submit" value="EKLE">
+            </div>
+        </div>
+    </form>
+
+
+    <form class="profile-form form-2" action="/admin/books/delete?_method=DELETE" method="POST">
+        <div class="form-header">
+            <h3 class="form-header-title">Kitap Silme</h3>
+        </div>
+        <div class="form-container form-2-container">
+            <div class="section-form">
+                <div class="logo1 logo"><i class="fas fa-key fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kitap ID " name="bookID">
+            </div>
+            <div class="section-form">
+                <input class="btn-style input-style" type="submit" value="SİL">
+            </div>
+        </div>
+    </form>
+    <form class="profile-form" action="/admin/books/update?_method=PUT" method="POST" enctype="multipart/form-data">
+        <div class="form-header">
+            <h3 class="form-header-title">Kitap Bilgileri Güncelleme</h3>
+        </div>
+        <div class="form-container">
+            <div class="section-form">
+                <div class="logo1 logo"><i class="fas fa-key fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kitap ID " name="bookID">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kitap İsmi " name="name">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Yazar Adı" name="author">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Kategori" name="category">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Barkod" name="barkod">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Stok" name="stok">
+            </div>
+            <div class="section-form">
+                <div class="logo3 logo"><i class="fab fa-scribd fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Fiyat" name="price">
+            </div>
+            <div class="section-form">
+                <div class="logo4 logo"><i class="fas fa-star-half-alt fa-2x"></i></div>
+                <input class="name-chance input-style" type="text" placeholder="Puan" name="puan">
+            </div>
+            <div class="section-form">
+                <input class="btn-style input-style" type="submit" value="GÜNCELLE">
+            </div>
+        </div>
+    </form>
+    <form class="odeme-form">
+        <div class="form-header">
+            <h3 class="form-header-title">Kitap İade Etme</h3>
+        </div>
+
+        <div class="odeme-form-head">
+            <h4>Fiyat</h4>
+            <h4>Kitap id</h4>
+            <h4>Kullanıcı id</h4>
+            <h4>Tarih</h4>
+            
+            <div class="logo4 logo"></div>
+        </div>
+        {{#each rebate}}
+        <div class="odeme-form-inner">
+            <h3>{{price}}</h3>
+            <h3>{{bookId}}</h3>
+            <h3>{{userId}}</h3>
+            <h3>{{date}}</h3>
+            
+            <div class="logo4 logo pushdown" onclick="window.location = '/payment/iadeTamam/{{bookId}}/{{userId}}/{{price}}/{{_id}}'"><i class="fas fa-check-circle fa-2x"></i></div>
+        </div>
+        {{/each}}
+        
+        
+
+    </form>
+    <form class="odeme-form">
+        <div class="form-header">
+            <h3 class="form-header-title">Ödeme Onaylama</h3>
+        </div>
+
+        <div class="odeme-form-head">
+            <h4>Fiyat</h4>
+            <h4>Kitap id</h4>
+            <h4>Kullanıcı id</h4>
+            <h4>Tarih</h4>
+            
+            <div class="logo4 logo"></div>
+        </div>
+        {{#each payment}}
+        <div class="odeme-form-inner">
+            <h3>{{price}}</h3>
+            <h3>{{bookId}}</h3>
+            <h3>{{userId}}</h3>
+            <h3>{{date}}</h3>
+            
+            <div class="logo4 logo pushdown" onclick="window.location = '/payment/onay/{{bookId}}/{{userId}}/{{price}}/{{_id}}'"><i class="fas fa-check-circle fa-2x"></i></div>
+        </div>
+        {{/each}}
+        
+        
+
+    </form>
+
+
+
+
+
+
+
+
+</body>
+<script src="input.js"></script></html>

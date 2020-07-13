@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css">
+</head>
+
+<body>
+    <div class="login-out">
+        <div class="login-in">
+            <div class="login">
+                <h4>Giriş</h4>
+                <form id="login-form" action="/users/login" method="POST">
+                    <div class="username login-style">
+                        <i class="fas fa-user-alt"></i>
+                        <input type="text" id="username" name="email" >
+                    </div>
+                    <div class="password login-style">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password0" name="password">
+                    </div>
+                    <input type="submit" id="log" name="fname" value="Giriş">
+
+                </form>
+                <a href="/users/forgetPass">Şifremi unuttum</a>
+                <div class="github btn-style" onclick="window.location='/users/login/github';">
+                    <img src="/images/social/github.png" alt="">
+                    <div class="social-text">
+                        <p>GİTHUB ile giriş</p>
+                    </div>
+                </div>
+                <div class="google btn-style" onclick="window.location='/users/login/google';">
+                    <img src="/images/social/google.png" alt="">
+                    <div class="social-text">
+                        <p>GOOGLE ile giriş</p>
+                    </div>
+                </div>
+
+            </div>
+            <a href="/users/register">Hesap Oluştur</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
