@@ -1,5 +1,7 @@
 # LibraryTrack - Kitap Kiralama Sitesi
 
+![alt text](librarytrack.png)
+
 İçerisinde Kaydolma, Giriş Yapma, Google ve Github ile giriş yapma, İki Aşamalı Doğrulama, Şifremi Unuttum, Kitapları en son eklenenler, en çok puan alanlar ve en çok kiralananlar şeklinde sıralama,
 kitapları site içerisinde bulunan kredi sistemiyle kiralama, ödeme onaylama ve kitap iade talebini onaylama özellikleriyle beraber kitap ve kullanıcı işlemlerinin yönetimini sağlayan admin paneli özelliklerini barındıran
 kitap kiralama sitesi.
