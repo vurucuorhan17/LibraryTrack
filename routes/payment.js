@@ -87,7 +87,7 @@ router.get("/onay/:bookId/:userId/:price/:paymentId",(req,res) => {
         User.findByIdAndUpdate(req.params.userId,{
             $push:{
                 book_id:{
-                    id:[req.params.bookId],
+                    id: req.params.bookId,
                     rentDate: Date.now()
                 }
             },
@@ -150,10 +150,9 @@ router.get("/iadeTamam/:bookId/:userId/:price/:rebateId",(req,res) => {
     User.findById(req.params.userId)
     .then((user) => {
         User.findByIdAndUpdate(req.params.userId,{
-            $pullAll:{
+            $pull:{
                 book_id:{
-                    id: null,
-                    rentDate: null
+                    id: req.params.bookId
                 },
             },
             credit: user.credit += Number(req.params.price),
