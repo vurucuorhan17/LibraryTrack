@@ -22,7 +22,7 @@ const paymentRouter = require("./routes/payment");
 
 const app = express();
 
-mongoose.connect("mongodb://127.0.0.1:27017/librarytrack-db",{
+mongoose.connect(process.env.MONGOLAB_URI || "mongodb://127.0.0.1:27017/librarytrack-db",{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
