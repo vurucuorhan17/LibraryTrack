@@ -115,9 +115,7 @@ router.get("/iade/:id",(req,res) => {
             .then((user) => {
                 Rebate.create({
                     price:bookJson.price,
-                    bookId:{
-                        id:mongoose.Types.ObjectId(bookJson._id)
-                    },
+                    bookId:mongoose.Types.ObjectId(bookJson._id),
                     userId:user._id
                 })
                 .then((rebate) => {
