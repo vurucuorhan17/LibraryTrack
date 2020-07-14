@@ -211,20 +211,27 @@ router.post("/register",(req,res) => {
 
 
   bcrypt.hash(password,10,(err,hash) => {
-    User.create({
-      ...req.body,
-      password:hash,
-      $or:[
-        {
-          picture: `/images/${req.files.imageFile.name}`
-        },
-        {
-          picture:null
-        }
-      ]
-    })
-    .then(data => res.redirect("/users/login"))
-    .catch(err => res.render("site/register",{message:"Hata oluştu"}));
+    if(req.files.imageFile)
+    {
+      User.create({
+        ...req.body,
+        password:hash,
+        picture: `/images/${req.files.imageFile.name}`
+      })
+      .then(data => res.redirect("/users/login"))
+      .catch(err => res.render("site/register",{message:"Hata oluştu"}));
+    }
+    else
+    {
+      User.create({
+        ...req.body,
+        password:hash,
+        picture: null
+      })
+      .then(data => res.redirect("/users/login"))
+      .catch(err => res.render("site/register",{message:"Hata oluştu"}));
+    }
+    
   });
 
   req.files.imageFile.mv(path.resolve(__dirname, "../public/images/", req.files.imageFile.name),(err) => {
