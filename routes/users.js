@@ -211,7 +211,7 @@ router.post("/register",(req,res) => {
 
 
   bcrypt.hash(password,10,(err,hash) => {
-    if(req.files)
+    if(req.files != null)
     {
       User.create({
         ...req.body,
@@ -226,7 +226,7 @@ router.post("/register",(req,res) => {
       User.create({
         ...req.body,
         password:hash,
-        picture: " "
+        picture: null
       })
       .then(data => res.redirect("/users/login"))
       .catch(err => res.render("site/register",{message:"Hata oluştu"}));
