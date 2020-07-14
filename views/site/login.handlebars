@@ -39,7 +39,11 @@
                         <p>GOOGLE ile giriş</p>
                     </div>
                 </div>
-
+                {{#if message}}
+                <p style="border-style: dashed; border-color: hotpink;">
+                    {{message}}
+                </p>
+                {{/if}}
             </div>
             <a href="/users/register">Hesap Oluştur</a>
         </div>

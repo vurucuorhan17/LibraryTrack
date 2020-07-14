@@ -233,14 +233,14 @@ router.post("/login",(req,res) => {
   .then((user) => {
     if(!user)
     {
-      res.json({status:false,message:"Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış"});
+      res.render("site/login",{message:"Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış"});
     }
     else
     {
       bcrypt.compare(password,user.password,(err,result) => {
         if(result === false)
         {
-          res.json({status:false,message:"Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış"});
+          res.render("site/login",{message:"Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış"});
         }
         else
         {

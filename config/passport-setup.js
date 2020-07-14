@@ -59,7 +59,7 @@ passport.use(new GithubStrategy({
         clientID: keys.github.clientID,
         clientSecret: keys.github.clientSecret
     },(accessToken,refreshToken,profile,done) => {
-        //console.log(profile);
+        console.log(profile);
         User.findOne({githubID:profile.id})
         .then((currentUser) => {
             if(currentUser)
