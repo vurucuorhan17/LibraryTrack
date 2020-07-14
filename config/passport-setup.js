@@ -77,12 +77,12 @@ passport.use(new GithubStrategy({
                 .then((newUser) => {
                     done(null,newUser);
                 })
-                .catch(err => res.json(err));
+                .catch(err => console.log(err));
             }
         
             
         })
-        .catch(err => res.json(err));
+        .catch(err => console.log(err));
     })
 );
 
