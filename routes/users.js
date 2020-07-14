@@ -226,7 +226,7 @@ router.post("/register",(req,res) => {
       User.create({
         ...req.body,
         password:hash,
-        picture: null
+        picture: " "
       })
       .then(data => res.redirect("/users/login"))
       .catch(err => res.render("site/register",{message:"Hata oluştu"}));
