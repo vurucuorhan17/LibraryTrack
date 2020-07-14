@@ -49,8 +49,10 @@ router.post("/books/new", (req, res) => {
                 book_picture: `/images/${myfile.name}`,
                 book_file: `/books/${bookFile.name}`
             })
-                .then(book => res.render("admin/index"))
-                .catch(err => res.json(err));
+            .then(book => {
+                res.redirect("/admin");
+            })
+            .catch(err => res.json(err));
         })
         .catch(err => res.json(err));
 
