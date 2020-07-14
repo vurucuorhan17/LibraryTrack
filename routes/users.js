@@ -211,7 +211,7 @@ router.post("/register",(req,res) => {
 
 
   bcrypt.hash(password,10,(err,hash) => {
-    console.log(req.files.imageFile);
+    console.log(req.files);
     if(req.files.imageFile)
     {
       User.create({
