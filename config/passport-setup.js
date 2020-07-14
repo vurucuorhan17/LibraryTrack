@@ -38,7 +38,7 @@ passport.use(
                 User.create({
                     name: profile.displayName,
                     googleID: profile.id,
-                    email:`${profile.displayName}@google.com`,
+                    email:`${profile.displayName}_${profile.id}@google.com`,
                     picture: profile.photos[0].value,
                 })
                 .then((user) => {
@@ -72,7 +72,7 @@ passport.use(new GithubStrategy({
                 User.create({
                     name: profile._json.name,
                     githubID: profile.id,
-                    email:`${profile._json.name}@github.com`,
+                    email:`${profile._json.name}_${profile.id}@github.com`,
                     address: profile._json.location,
                     picture: profile._json.avatar_url
                 })
