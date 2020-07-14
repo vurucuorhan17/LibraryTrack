@@ -214,7 +214,14 @@ router.post("/register",(req,res) => {
     User.create({
       ...req.body,
       password:hash,
-      picture: `/images/${req.files.imageFile.name}` || null
+      $or:[
+        {
+          picture: `/images/${req.files.imageFile.name}`
+        },
+        {
+          picture:null
+        }
+      ]
     })
     .then(data => res.redirect("/users/login"))
     .catch(err => res.render("site/register",{message:"Hata oluştu"}));
