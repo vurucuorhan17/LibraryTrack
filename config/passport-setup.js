@@ -38,6 +38,7 @@ passport.use(
                 User.create({
                     name: profile.displayName,
                     googleID: profile.id,
+                    email:`${profile.displayName}@google.com`,
                     picture: profile.photos[0].value,
                 })
                 .then((user) => {
@@ -59,7 +60,7 @@ passport.use(new GithubStrategy({
         clientID: keys.github.clientID,
         clientSecret: keys.github.clientSecret
     },(accessToken,refreshToken,profile,done) => {
-        console.log(profile);
+        //console.log(profile);
         User.findOne({githubID:profile.id})
         .then((currentUser) => {
             if(currentUser)
@@ -71,6 +72,7 @@ passport.use(new GithubStrategy({
                 User.create({
                     name: profile._json.name,
                     githubID: profile.id,
+                    email:`${profile._json.name}@github.com`,
                     address: profile._json.location,
                     picture: profile._json.avatar_url
                 })
