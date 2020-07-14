@@ -220,8 +220,13 @@ router.post("/register",(req,res) => {
       })
       .then(data => res.redirect("/users/login"))
       .catch(err => res.render("site/register",{message:"Hata oluştu"}));
+
+      req.files.imageFile.mv(path.resolve(__dirname, "../public/images/", req.files.imageFile.name),(err) => {
+        console.log(err);
+      });
+
     }
-    else
+    if(req.files === null)
     {
       User.create({
         ...req.body,
@@ -234,9 +239,7 @@ router.post("/register",(req,res) => {
     
   });
 
-  req.files.imageFile.mv(path.resolve(__dirname, "../public/images/", req.files.imageFile.name),(err) => {
-    console.log(err);
-  });
+  
   
 });
 
