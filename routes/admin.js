@@ -50,7 +50,6 @@ router.post("/books/new", (req, res) => {
                 book_file: `/books/${bookFile.name}`
             })
             .then((book) => {
-                console.log(book);
                 res.redirect("/admin");
             })
             .catch(err => res.json(err));
