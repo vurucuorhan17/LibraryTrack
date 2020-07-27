@@ -12,19 +12,6 @@ router.get('/', (req, res) => {
     res.redirect("/users/login");
   }
   
-  // if(req.user)
-  // {
-  //   res.render("site/books/booksPage",{user:req.user,socialProfile:true});
-  // }
-  // else if(req.session.userId)
-  // {
-  //   res.render("site/books/booksPage",{user:true,socialProfile:false});
-  // }
-  // else
-  // {
-  //   res.render("site/books/booksPage",{user:false});
-  // }
-  
 });
 
 module.exports = router;

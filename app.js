@@ -6,7 +6,6 @@ const logger = require('morgan');
 const session = require("express-session");
 const exphbs = require("express-handlebars");
 const fileUpload = require("express-fileupload");
-//const busboy = require("connect-busboy");
 const connectMongo = require("connect-mongo");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
@@ -22,7 +21,7 @@ const paymentRouter = require("./routes/payment");
 
 const app = express();
 
-mongoose.connect(process.env.MONGOLAB_URI || "mongodb://127.0.0.1:27017/librarytrack-db",{
+mongoose.connect("mongodb://127.0.0.1:27017/librarytrack-db",{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
