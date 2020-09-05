@@ -25,7 +25,6 @@ passport.use(
         clientID: keys.google.clientID,
         clientSecret: keys.google.clientSecret
     },(accessToken,refreshToken,profile,done) => {
-        //console.log(profile);
         User.findOne({googleID: profile.id})
         .then((currentUser) => {
             if(currentUser)
@@ -36,10 +35,10 @@ passport.use(
             else
             {
                 User.create({
-                    name: profile.displayName,
+                    name: profile._json.name,
                     googleID: profile.id,
-                    email:`${profile.displayName}_${profile.id}@google.com`,
-                    picture: profile.photos[0].value,
+                    email: profile._json.email,
+                    picture: profile._json.picture
                 })
                 .then((user) => {
                     console.log("Yeni Google Kullanıcısı Oluşturuldu: " + user);
@@ -60,7 +59,6 @@ passport.use(new GithubStrategy({
         clientID: keys.github.clientID,
         clientSecret: keys.github.clientSecret
     },(accessToken,refreshToken,profile,done) => {
-        //console.log(profile);
         User.findOne({githubID:profile.id})
         .then((currentUser) => {
             if(currentUser)
@@ -72,7 +70,7 @@ passport.use(new GithubStrategy({
                 User.create({
                     name: profile._json.name,
                     githubID: profile.id,
-                    email:`${profile._json.name}_${profile.id}@github.com`,
+                    email: profile._json.email,
                     address: profile._json.location,
                     picture: profile._json.avatar_url
                 })

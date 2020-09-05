@@ -104,229 +104,243 @@ sendMail2 = (mail, link) => {
     main().catch(console.error);
 }
 
-exports.authCheck = (req, res, next) => {
-    if (!req.user) {
-        res.redirect("/users/login");
-    }
-    else {
-        next();
-    }
-};
-
-exports.GetSocialProfile = (req, res) => {
-    if (req.user) {
-        User.aggregate([
-            {
-                $match: {
-                    _id: mongoose.Types.ObjectId(req.user._id)
-                }
-            },
-            {
-                $lookup: {
-                    from: "books",
-                    foreignField: "_id",
-                    localField: "book_id.id",
-                    as: "books"
-                }
-            }
-        ])
-            .then((data) => {
-
-                let rentDate;
-                let teslimTarihi = new Date();
-                let dateNow = new Date();
-
-                for (let i = 0; i < data[0].book_id.length; i++) {
-                    rentDate = data[0].book_id[i].rentDate;
-                    teslimTarihi.setDate(rentDate.getDate() + 7);
-                    if (teslimTarihi.getDate() - dateNow.getDate() <= 0) {
-                        User.findOneAndUpdate({ _id: data[0]._id }, {
-                            $pull: {
-                                book_id: {
-                                    _id: data[0].book_id[i]._id
-                                }
-                            },
-                        }, (err, data) => {
-                            console.log(data);
-                        });
-                    }
-                }
-
-                res.render("site/profile", { book: data[0].books, user: true, socialProfile: true, credit: Math.floor(data[0].credit) });
-
-            })
-            .catch(err => res.json(err));
-    }
-};
-
-exports.GetNormalProfile = (req, res) => {
-    if (req.session.userId) {
-        User.aggregate([
-            {
-                $match: {
-                    _id: mongoose.Types.ObjectId(req.session.userId)
-                }
-            },
-            {
-                $lookup: {
-                    from: "books",
-                    localField: "book_id.id",
-                    foreignField: "_id",
-                    as: "books"
-                }
-            }
-        ])
-            .then((data) => {
-
-                let rentDate;
-                let teslimTarihi = new Date();
-                let dateNow = new Date();
-
-                for (let i = 0; i < data[0].book_id.length; i++) {
-                    rentDate = data[0].book_id[i].rentDate;
-                    teslimTarihi.setDate(rentDate.getDate() + 7);
-                    if (teslimTarihi.getDate() - dateNow.getDate() <= 0) {
-                        User.findOneAndUpdate({ _id: data[0]._id }, {
-                            $pull: {
-                                book_id: {
-                                    _id: data[0].book_id[i]._id
-                                }
-                            },
-                        }, (err, data) => {
-                            console.log(data);
-                        });
-                    }
-                }
-
-                res.render("site/profile", { book: data[0].books, user: true, socialProfile: false, credit: Math.floor(data[0].credit) });
-
-            })
-            .catch(err => res.json(err));
-    }
-};
-
-exports.ForgetPassManager = (req, res) => {
-    const email = req.body.email;
-
-    User.findOne({ email })
-        .then(user => {
-            if (user) {
-                sendMail2(user.email, `http://127.0.0.1:3000/users/updatePass/${user._id}`);
-                res.redirect("/users/login");
-            }
-            else {
-                res.json({ message: "Şifresini değiştirmek istediğiniz kullanıcı bulunamadı" })
-            }
-        })
-        .catch(err => res.json(err));
-};
-
-exports.UpdateUser = (req, res) => {
-    bcrypt.hash(req.body.password, 10, (err, hash) => {
-        User.findByIdAndUpdate({ _id: req.params.id }, {
-            password: hash
-        })
-            .then(data => res.redirect("/users/login"))
-            .catch(err => res.json(err));
-    });
-}
-
-exports.TwoAuthVerification = (req, res) => {
-    const code = req.body.code;
-    if (parseInt(code) === parseInt(rndNum)) {
-        res.redirect("/books");
-    }
-    else {
-        req.session.destroy(() => {
+class UserController
+{
+    static authCheck(req,res,next)
+    {
+        if (!req.user) {
             res.redirect("/users/login");
+        }
+        else {
+            next();
+        }
+    }
+
+    static GetSocialProfile(req,res)
+    {
+        if (req.user) {
+            User.aggregate([
+                {
+                    $match: {
+                        _id: mongoose.Types.ObjectId(req.user._id)
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "books",
+                        foreignField: "_id",
+                        localField: "book_id.id",
+                        as: "books"
+                    }
+                }
+            ])
+                .then((data) => {
+    
+                    let rentDate;
+                    let teslimTarihi = new Date();
+                    let dateNow = new Date();
+    
+                    for (let i = 0; i < data[0].book_id.length; i++) {
+                        rentDate = data[0].book_id[i].rentDate;
+                        teslimTarihi.setDate(rentDate.getDate() + 7);
+                        if (teslimTarihi.getDate() - dateNow.getDate() <= 0) {
+                            User.findOneAndUpdate({ _id: data[0]._id }, {
+                                $pull: {
+                                    book_id: {
+                                        _id: data[0].book_id[i]._id
+                                    }
+                                },
+                            }, (err, data) => {
+                                console.log(data);
+                            });
+                        }
+                    }
+    
+                    res.render("site/profile", { book: data[0].books, user: true, socialProfile: true, credit: Math.floor(data[0].credit) });
+    
+                })
+                .catch(err => res.json(err));
+        }
+    }
+
+    static GetNormalProfile(req,res)
+    {
+        if (req.session.userId) {
+            User.aggregate([
+                {
+                    $match: {
+                        _id: mongoose.Types.ObjectId(req.session.userId)
+                    }
+                },
+                {
+                    $lookup: {
+                        from: "books",
+                        localField: "book_id.id",
+                        foreignField: "_id",
+                        as: "books"
+                    }
+                }
+            ])
+                .then((data) => {
+    
+                    let rentDate;
+                    let teslimTarihi = new Date();
+                    let dateNow = new Date();
+    
+                    for (let i = 0; i < data[0].book_id.length; i++) {
+                        rentDate = data[0].book_id[i].rentDate;
+                        teslimTarihi.setDate(rentDate.getDate() + 7);
+                        if (teslimTarihi.getDate() - dateNow.getDate() <= 0) {
+                            User.findOneAndUpdate({ _id: data[0]._id }, {
+                                $pull: {
+                                    book_id: {
+                                        _id: data[0].book_id[i]._id
+                                    }
+                                },
+                            }, (err, data) => {
+                                console.log(data);
+                            });
+                        }
+                    }
+    
+                    res.render("site/profile", { book: data[0].books, user: true, socialProfile: false, credit: Math.floor(data[0].credit) });
+    
+                })
+                .catch(err => res.json(err));
+        }
+    }
+
+    static ForgetPassManager(req,res)
+    {
+        const email = req.body.email;
+
+        User.findOne({ email })
+            .then(user => {
+                if (user) {
+                    sendMail2(user.email, `http://127.0.0.1:3000/users/updatePass/${user._id}`);
+                    res.redirect("/users/login");
+                }
+                else {
+                    res.json({ message: "Şifresini değiştirmek istediğiniz kullanıcı bulunamadı" })
+                }
+            })
+            .catch(err => res.json(err));
+    }
+
+    static UpdateUser(req,res)
+    {
+        bcrypt.hash(req.body.password, 10, (err, hash) => {
+            User.findByIdAndUpdate({ _id: req.params.id }, {
+                password: hash
+            })
+                .then(data => res.redirect("/users/login"))
+                .catch(err => res.json(err));
         });
     }
-}
 
-exports.RegisterUser = (req, res) => {
-    const { password } = req.body;
-
-    bcrypt.hash(password, 10, (err, hash) => {
-        if (req.files != null) {
-            User.create({
-                ...req.body,
-                password: hash,
-                picture: `/images/${req.files.imageFile.name}`
-            })
-                .then(data => res.redirect("/users/login"))
-                .catch(err => res.render("site/register", { message: "Hata oluştu" }));
-
-            req.files.imageFile.mv(path.resolve(__dirname, "../public/images/", req.files.imageFile.name), (err) => {
-                console.log(err);
+    static TwoAuthVerification(req,res)
+    {
+        const code = req.body.code;
+        if (parseInt(code) === parseInt(rndNum)) {
+            res.redirect("/books");
+        }
+        else {
+            req.session.destroy(() => {
+                res.redirect("/users/login");
             });
-
         }
-        if (req.files === null) {
-            User.create({
-                ...req.body,
-                password: hash,
-                picture: null
-            })
-                .then(data => res.redirect("/users/login"))
-                .catch(err => res.render("site/register", { message: "Hata oluştu" }));
-        }
+    }
 
-    });
-}
+    static RegisterUser(req,res)
+    {
+        const { password } = req.body;
 
-exports.LoginUser = (req, res) => {
-    const { email, password } = req.body;
-
-    User.findOne({ email })
-        .then((user) => {
-            if (!user) {
-                res.render("site/login", { message: "Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış" });
-            }
-            else {
-                bcrypt.compare(password, user.password, (err, result) => {
-                    if (result === false) {
-                        res.render("site/login", { message: "Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış" });
-                    }
-                    else {
-                        rndNum = randomNumber(100000, 900000);
-                        sendMail(rndNum, user.email);
-                        req.session.userId = user._id;
-                        res.redirect("/users/twoAuth");
-                    }
+        bcrypt.hash(password, 10, (err, hash) => {
+            if (req.files != null) {
+                User.create({
+                    ...req.body,
+                    password: hash,
+                    picture: `/images/${req.files.imageFile.name}`
+                })
+                    .then(data => res.redirect("/users/login"))
+                    .catch(err => res.render("site/register", { message: "Hata oluştu" }));
+    
+                req.files.imageFile.mv(path.resolve(__dirname, "../public/images/", req.files.imageFile.name), (err) => {
+                    console.log(err);
                 });
+    
             }
-        })
-        .catch(err => res.json(err));
-};
+            if (req.files === null) {
+                User.create({
+                    ...req.body,
+                    password: hash,
+                    picture: null
+                })
+                    .then(data => res.redirect("/users/login"))
+                    .catch(err => res.render("site/register", { message: "Hata oluştu" }));
+            }
+    
+        }); 
+    }
 
-exports.DeleteUserById = (req,res) => 
-{
-    User.findByIdAndDelete(req.params.userId)
+    static LoginUser(req,res)
+    {
+        const { email, password } = req.body;
+
+        User.findOne({ email })
+            .then((user) => {
+                if (!user) {
+                    res.render("site/login", { message: "Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış" });
+                }
+                else {
+                    bcrypt.compare(password, user.password, (err, result) => {
+                        if (result === false) {
+                            res.render("site/login", { message: "Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış" });
+                        }
+                        else {
+                            rndNum = randomNumber(100000, 900000);
+                            sendMail(rndNum, user.email);
+                            req.session.userId = user._id;
+                            res.redirect("/users/twoAuth");
+                        }
+                    });
+                }
+            })
+            .catch(err => res.json(err));
+    }
+
+    static DeleteUserById(req,res)
+    {
+        User.findByIdAndDelete(req.params.userId)
         .then((user) => {
             res.json({ status: "ok", message: "User Deleted!" });
         })
         .catch(err => res.json(err));
-};
-
-exports.UpdateUserById = (req,res) => 
-{
-    const {password} = req.body;
-
-    if (!password) {
-        User.findByIdAndUpdate(req.params.userId, {
-            ...req.body
-        })
-            .then(user => res.json(user))
-            .catch(err => res.json(err));
     }
-    else {
-        bcrypt.hash(password, 10, (err, hash) => {
+
+    static UpdateUserById(req,res)
+    {
+        const {password} = req.body;
+
+        if (!password) {
             User.findByIdAndUpdate(req.params.userId, {
-                ...req.body,
-                password: hash
+                ...req.body
             })
                 .then(user => res.json(user))
                 .catch(err => res.json(err));
-        });
+        }
+        else {
+            bcrypt.hash(password, 10, (err, hash) => {
+                User.findByIdAndUpdate(req.params.userId, {
+                    ...req.body,
+                    password: hash
+                })
+                    .then(user => res.json(user))
+                    .catch(err => res.json(err));
+            });
+        }
     }
+
 }
+
+module.exports = UserController;

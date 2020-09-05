@@ -3,7 +3,6 @@ const router = express.Router();
 const passport = require("passport");
 
 const UserController = require("../controllers/UserController");
-const User = require('../models/User');
 
 router.get("/register",(req,res) => {
   res.render("site/register");
@@ -14,17 +13,18 @@ router.get("/login",(req,res) => {
 });
 
 router.get("/login/google",passport.authenticate("google",{
-    scope: ["profile"]
+    scope: ["profile","email"]
 }));
 
-router.get("/login/github",passport.authenticate("github"));
+router.get("/login/github",passport.authenticate("github",{
+  scope: ["profile","email"]
+}));
 
-router.get("/login/google/redirect",passport.authenticate("google"),(req,res) => {
+router.get("/login/google/redirect",passport.authenticate("google",{failureRedirect: "/users/login"}),(req,res) => {
   res.redirect("/books");
 });
 
 router.get("/login/github/redirect",passport.authenticate("github",{failureRedirect: "/users/login"}),(req,res) => {
-  //console.log(req.user);
   res.redirect("/books");
 });
 
