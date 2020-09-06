@@ -241,14 +241,22 @@ class UserController
     static TwoAuthVerification(req,res)
     {
         const code = req.body.code;
-        if (parseInt(code) === parseInt(rndNum)) {
-            res.redirect("/books");
+        if(typeof code === "object") // Prevent NoSQL Injection
+        {
+            res.redirect(404,"/users/login");
         }
-        else {
-            req.session.destroy(() => {
-                res.redirect("/users/login");
-            });
+        else
+        {
+            if (parseInt(code) === parseInt(rndNum)) {
+                res.redirect("/books");
+            }
+            else {
+                req.session.destroy(() => {
+                    res.redirect("/users/login");
+                });
+            }
         }
+        
     }
 
     static RegisterUser(req,res)
@@ -286,8 +294,13 @@ class UserController
     static LoginUser(req,res)
     {
         const { email, password } = req.body;
-
-        User.findOne({ email })
+        if(typeof email === "object" || typeof password === "object") // Prevent NoSQL Injection
+        {
+            res.json({"message":"Meşru yollar ile giriş yapmayı dene."});
+        }
+        else
+        {
+            User.findOne({ email })
             .then((user) => {
                 if (!user) {
                     res.render("site/login", { message: "Giriş Başarısız. Girdiğiniz kullanıcı adı veya parola yanlış" });
@@ -307,6 +320,8 @@ class UserController
                 }
             })
             .catch(err => res.json(err));
+        }
+        
     }
 
     static DeleteUserById(req,res)

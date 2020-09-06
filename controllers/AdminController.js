@@ -33,7 +33,7 @@ class AdminController
         const { name, category, barkod, stok, puan, price } = req.body;
         let myfile = req.files.myfile;
         let bookFile = req.files.bookFile;
-    
+
         Author.create({ name: req.body.author })
             .then(author => {
                 Book.create({
