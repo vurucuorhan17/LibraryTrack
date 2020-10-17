@@ -36,8 +36,8 @@ sendMail = (rndNum, mail) => {
             port: 465,
             secure: true, // true for 465, false for other ports
             auth: {
-                user: "vurucuorhan17@gmail.com", // generated ethereal user
-                pass: "qlzupzbxaizhuajk" // generated ethereal password
+                user: process.env.NODEMAILER_AUTH_USER, // generated ethereal user
+                pass: process.env.NODEMAILER_AUTH_PASS // generated ethereal password
             }
         });
         // send mail with defined transport object
@@ -82,8 +82,8 @@ sendMail2 = (mail, link) => {
             port: 465,
             secure: true, // true for 465, false for other ports
             auth: {
-                user: "vurucuorhan17@gmail.com", // generated ethereal user
-                pass: "qlzupzbxaizhuajk" // generated ethereal password
+                user: process.env.NODEMAILER_AUTH_USER, // generated ethereal user
+                pass: process.env.NODEMAILER_AUTH_PASS // generated ethereal password
             }
         });
         // send mail with defined transport object

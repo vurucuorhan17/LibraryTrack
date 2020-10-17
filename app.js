@@ -11,6 +11,7 @@ const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
+require("dotenv").config();
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
@@ -21,7 +22,7 @@ const paymentRouter = require("./routes/payment");
 
 const app = express();
 
-mongoose.connect("mongodb://mongo:27017/librarytrack-db",{
+mongoose.connect("mongodb://localhost:27017/librarytrack-db",{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
